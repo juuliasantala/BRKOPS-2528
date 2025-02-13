@@ -1,0 +1,7 @@
+genie==24.11
+Jinja2==3.1.5
+meraki==1.54.0
+pyats==24.11
+pytest==8.3.4
+PyYAML==6.0.2
+requests==2.32.3

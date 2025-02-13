@@ -1,0 +1,80 @@
+stages:
+  - static-validation
+  - build
+  - pre-test
+  - deploy
+  - post-test
+  - notification
+
+pre_static_validation:
+  stage: static-validation
+  image: ciscotestautomation/pyats
+  script:
+    - python test_static_configuration.py
+
+buid_network_config:
+  stage: build
+  script:
+    - pip install --upgrade pip
+    - pip install pyyaml jinja2
+    - python build_configuration.py
+  artifacts:
+    paths:
+      - helsinki-router.txt
+      - tokyo-router.txt
+
+pre_network_tests:
+  stage: pre-test
+  image: ciscotestautomation/pyats
+  script:
+    - python test_ping.py pre-test
+  allow_failure: true
+
+pre_config_snapshot:
+  stage: pre-test
+  image: ciscotestautomation/pyats
+  script:
+    - pip install genie
+    - pyats learn "interface" --testbed-file testbed.yaml --output output1
+  artifacts:
+    paths:
+      - output1
+
+deploy:
+  stage: deploy
+  script:
+    - pip install --upgrade pip 
+    - pip install requests pyyaml
+    - python configure_interfaces.py
+
+post_network_tests:
+  stage: post-test
+  image: ciscotestautomation/pyats
+  script:
+    - python test_ping.py post-test
+  artifacts:
+    paths:
+      - message.json
+    when: always
+
+post_config_snapshot:
+  stage: post-test
+  image: ciscotestautomation/pyats
+  script:
+    - pip install genie
+    - pyats learn "interface" --testbed-file testbed.yaml --output output2
+    - pyats diff output1 output2 > diff.txt
+  artifacts:
+    paths:
+      - ./*.txt
+      - output2
+    when: always
+
+notification:
+  stage: notification
+  script:
+    - pip install --upgrade pip 
+    - pip install requests
+    - python webex.py $CI_PIPELINE_URL $CI_COMMIT_MESSAGE
+  rules:
+    - when: always

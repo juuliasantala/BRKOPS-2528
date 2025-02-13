@@ -1,0 +1,41 @@
+---
+testbed:
+    name: My testbed
+    credentials: 
+        default:
+            username: developer
+            password: C1sco12345
+        enable:
+            password: C1sco12345
+
+devices:
+    R1:
+        os: iosxe
+        type: iosxe
+        connections:
+            cli:
+                ip: 198.18.133.101
+                protocol: ssh
+    R2:
+        os: iosxe
+        type: iosxe
+        connections:
+            cli:
+                ip: 198.18.7.2
+                protocol: ssh
+
+    R3:
+        os: iosxe
+        type: iosxe
+        connections:
+            cli:
+                ip: 198.18.11.2
+                protocol: ssh
+
+    R4:
+        os: iosxe
+        type: iosxe
+        connections:
+            cli:
+                ip: 198.18.12.2
+                protocol: ssh
