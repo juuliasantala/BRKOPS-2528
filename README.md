@@ -1,6 +1,6 @@
 # Succeed with Test-Driven Network Automation - Practical Examples Using Python and your Network’s APIs
 
-This repository includes the supplemental material for the Cisco Live Breakout BRK-2528 (delivered in Cisco Live EMEA 2025). In this repository you can find the code for demos that were delivered during the session.
+This repository includes the supplemental material for the Cisco Live Breakout BRK-2528 (delivered in Cisco Live EMEA 2026). In this repository you can find the code for demos that were delivered during the session.
 
 ## Prepare your environment
 

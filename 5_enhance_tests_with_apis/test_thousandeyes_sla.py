@@ -152,7 +152,7 @@ if __name__ == "__main__":
     # Define your ThousandEyes agent
     agent = os.getenv("TE_AGENT")
     # Define the URLs to test
-    my_urls = ("ciscolive.com","https://testdrive.sechnik.com")
+    my_urls = ("www.ciscolive.com","https://testdrive.sechnik.com")
 
     # Call the test with the api_key, urls that you want to test, and agent you want to use
     sla_test = aetest.main(
