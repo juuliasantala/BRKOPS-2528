@@ -1,0 +1,18 @@
+---
+testbed:
+    name: My testbed
+
+devices:
+    Espoo-SW:
+        os: iosxe
+        type: iosxe
+        connections:
+            cli:
+                ip: 198.18.200.14
+                protocol: ssh
+        credentials: 
+            default:
+                username: netadmin
+                password: C1sco12345
+            enable:
+                password: C1sco12345
